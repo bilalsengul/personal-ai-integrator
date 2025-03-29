@@ -9,6 +9,12 @@ A tool that simultaneously queries multiple AI platforms (Claude, OpenAI, and Ge
 - Display responses from all three AIs side by side
 - Uses browser automation instead of APIs (avoiding API costs and limitations)
 - Works with your existing subscriptions
+- **NEW!** Response caching to avoid repeated queries
+- **NEW!** Automatic retry mechanism for improved reliability
+- **NEW!** Response comparison to highlight differences between AI platforms
+- **NEW!** Screenshots for debugging login and response issues
+- **NEW!** Colorized terminal output for better readability
+- **NEW!** Configurable headless mode for background operation
 
 ## Prerequisites
 
@@ -23,7 +29,7 @@ A tool that simultaneously queries multiple AI platforms (Claude, OpenAI, and Ge
 
 1. Clone this repository:
    ```
-   git clone https://github.com/yourusername/personal-ai-integrator.git
+   git clone https://github.com/bilalsengul/personal-ai-integrator.git
    cd personal-ai-integrator
    ```
 
@@ -43,6 +49,21 @@ A tool that simultaneously queries multiple AI platforms (Claude, OpenAI, and Ge
    GOOGLE_PASSWORD=your_google_password
    ```
 
+## Configuration Options
+
+Edit the `.env` file to customize application behavior:
+
+```
+# Toggle headless mode (true/false)
+HEADLESS=false
+
+# Record browser session videos for debugging (true/false)
+RECORD_VIDEO=false 
+
+# Default timeout in milliseconds
+DEFAULT_TIMEOUT=60000
+```
+
 ## Usage
 
 ### Start the server:
@@ -57,7 +78,17 @@ npm start
 npm run client
 ```
 
-The client will prompt you to enter a question, which will be sent to all three AI platforms. After a few moments, you'll see the responses from all platforms.
+### Client Commands
+
+The client now supports several commands:
+
+- `ask <question>` - Ask all AI platforms a question
+- `compare` - Compare differences between the last responses
+- `clear` - Clear the screen
+- `help` - Show available commands
+- `exit` - Exit the program
+
+You can also just type your question directly without any command prefix.
 
 ## How It Works
 
@@ -68,14 +99,17 @@ The system uses Playwright to automate browser interactions with each AI platfor
 3. Submits your question
 4. Waits for and captures the responses
 5. Returns all three responses
+6. Caches responses to avoid duplicate queries
+7. Compares responses to highlight differences in length, content, and format
 
 ## Troubleshooting
 
 - If Google login fails, ensure your credentials in the `.env` file are correct
 - Google may require additional verification steps the first time you use this tool
-- If verification is required, the tool will pause for 15 seconds to allow manual verification
-- The selectors used for interacting with web elements might break if the platforms change their UI
-- Ensure you have a stable internet connection
+- If verification is required, the tool will pause for 120 seconds to allow manual verification
+- Check the screenshots directory for visual debugging information
+- If using headless mode, set `HEADLESS=false` temporarily to debug login issues
+- Review video recordings in the videos directory if `RECORD_VIDEO=true`
 
 ## Disclaimer
 
