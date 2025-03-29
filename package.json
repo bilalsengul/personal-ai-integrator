@@ -1,0 +1,28 @@
+{
+  "name": "personal-ai-integrator",
+  "version": "1.0.0",
+  "description": "Simultaneous query system for Claude, OpenAI, and Gemini",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "client": "node src/client.js",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai",
+    "claude",
+    "openai",
+    "gemini",
+    "automation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "node-fetch": "^3.3.2",
+    "playwright": "^1.42.1"
+  }
+}
